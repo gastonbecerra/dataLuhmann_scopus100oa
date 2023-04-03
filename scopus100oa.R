@@ -11,7 +11,7 @@ glimpse(scopus100)
 # install.packages("rcrossref")
 # library('rcrossref')
 # cr100 <- rcrossref::cr_works(doi = scopus100$DOI)
-# saveRDS(cr100, file = "../data/scopus100_cr.RData")
+saveRDS(cr100, file = "./scopus100_cr.RData")
 
 cr100 <- readRDS("../data/scopus100_cr.RData")
 glimpse(cr100$data)
@@ -30,7 +30,7 @@ links <- cr100$data %>% select(doi, link, language) %>%
     filter(content.type %in% c("application/pdf","unspecified")) %>%
     mutate(id=1:n()) 
 glimpse(links)
-links %>% write.csv("../data/scopus100_links.csv", row.names = FALSE)
+links %>% write.csv("./scopus100_links.csv", row.names = FALSE)
 
 # download pdfs
 download_error_log <- c()
